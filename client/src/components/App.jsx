@@ -5,26 +5,26 @@ class App extends React.Component {
     super (props);
 
     this.state = {
-      reviews : [],
+      listingInfo : [],
     }
 
-    this.fetchReviews = this.fetchReviews.bind(this);
+    this.fetchInfo = this.fetchInfo.bind(this);
   }
 
-  fetchReviews() {
+  fetchInfo() {
     const that = this;
     fetch('/api/reviews')
     .then(function(response) {
-      return response.json();
+      return response.json();s
     })
     .then(function(data) {
       console.log(data);
-      that.setState({reviews : data})
+      that.setState({listingInfo : data})
     });
   }
 
   componentDidMount() {
-    this.fetchReviews();
+    this.fetchInfo();
   }
 
   render() {
