@@ -11,6 +11,7 @@ app.use(bodyParser.urlencoded())
 
 app.get('/api/reviews', (req, res) => {
   const query = 'SELECT * FROM listings INNER JOIN reviews ON listings.id = reviews.listingsId INNER JOIN responses ON reviews.id = responses.reviewId';
+  // const query = 'SELECT * FROM listings INNER JOIN reviews ON listings.id = reviews.listingsId';
   db.query(query, 'utf-8', (err, data) => {
     if (err) {
       console.log(err);

@@ -79,7 +79,7 @@ for (let responsesCounter = 2500; responsesCounter > 0; responsesCounter--) {
   let response = {
     response : faker.lorem.text(),
     response_date : faker.date.month() + ' ' + getRandomIntInclusive(2018, 2019),
-    reviewId : 1
+    reviewId : responsesCounter
   }
   responses.push(response);
 };
@@ -92,7 +92,7 @@ for (let i = 0; i < responses.length; i ++) {
     responses[i].response,
     responses[i].response_date,
     responses[i].reviewId
-  ],
+  ])
   // (err, res) => {
   //   console.log('reached')
   //   if (err) {
