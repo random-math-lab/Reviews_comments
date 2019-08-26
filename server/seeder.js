@@ -14,7 +14,7 @@ for (let listingCounter = 100; listingCounter > 0; listingCounter--) {
   let listing = {
     host_firstName : faker.name.firstName(),
     host_lastName : faker.name.lastName(),
-    img : faker.image.cats()
+    img : faker.image.avatar()
   }
   listings.push(listing);
 };
@@ -37,7 +37,7 @@ for (let reviewsCounter = 2500; reviewsCounter > 0; reviewsCounter --) {
   let review = {
     traveler_firstName : faker.name.firstName(),
     traveler_lastName : faker.name.lastName(),
-    profilePic : faker.image.nightlife(),
+    profilePic : faker.internet.avatar(),
     date : faker.date.month() + ' ' + getRandomIntInclusive(2018, 2019),
     body : faker.lorem.text(),
     ratings_accuracy : getRandomIntInclusive(1, 5),
@@ -86,7 +86,7 @@ for (let responsesCounter = 2500; responsesCounter > 0; responsesCounter--) {
 // console.log(responses);
 // console.log(responses.length);
 for (let i = 0; i < responses.length; i ++) {
-  console.log(i);
+  // console.log(i);
   const queryAddResponses = 'INSERT INTO responses (response, response_date, reviewId) VALUES (?, ?, ?)'
   db.query(queryAddResponses, [
     responses[i].response,
@@ -104,9 +104,3 @@ for (let i = 0; i < responses.length; i ++) {
   // })
   // console.log(responses)
 }
-
-// for (let i = 0; i < listings.length; i ++) {
-//   // console.log(i);
-//   const queryAddListings = 'INSERT INTO listings (host_firstName, host_lastName, img) VALUES (?, ?, ?)'
-//   db.query(queryAddListings, [listings[i].host_firstName, listings[i].host_lastName, listings[i].img])
-// }
