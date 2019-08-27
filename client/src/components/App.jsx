@@ -1,15 +1,15 @@
 import React from 'react';
-import fetch from "node-fetch";
+import fetch from 'node-fetch';
 
 class App extends React.Component {
   constructor (props) {
     super (props);
 
     this.state = {
-      listingsId : 2,
-      listingsInfo : [],
+      listingsId: 2,
+      listingsInfo: [],
       reviewsResponses: [],
-    }
+    };
 
     this.fetchListings = this.fetchListings.bind(this);
     this.fetchReviewsResponses = this.fetchReviewsResponses.bind(this);
@@ -18,25 +18,25 @@ class App extends React.Component {
   fetchListings() {
     const that = this;
     fetch(`/api/listings?listingsId=${that.state.listingsId}`)
-    .then(function(response) {
-      return response.json();
-    })
-    .then(function(data) {
-      console.log(data);
-      that.setState({listingsInfo : data})
-    });
+      .then(function(response) {
+        return response.json();
+      })
+      .then(function(data) {
+        console.log(data);
+        that.setState({listingsInfo: data});
+      });
   }
 
   fetchReviewsResponses() {
     const that = this;
     fetch(`/api/reviewsResponses?listingsId=${that.state.listingsId}`)
-    .then(function(response) {
-      return response.json();
-    })
-    .then(function(data) {
-      console.log(data);
-      that.setState({reviewsResponses : data})
-    })
+      .then(function(response) {
+        return response.json();
+      })
+      .then(function(data) {
+        console.log(data);
+        that.setState({reviewsResponses: data});
+      });
   }
 
   componentDidMount() {
@@ -45,12 +45,12 @@ class App extends React.Component {
   }
 
   render() {
-    return(
+    return (
       <div className="app1">
         <h1>Reviews!! </h1>
       </div>
-    )
+    );
   }
 }
 
-export default App
+export default App;
