@@ -13,4 +13,7 @@ describe('<App /> rendering', () => {
       let wrapper = shallow(<App />);
       expect(wrapper.children('h1')).toHaveLength(1);
   });
+
+
 });
+

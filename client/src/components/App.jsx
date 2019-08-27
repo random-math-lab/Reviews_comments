@@ -46,7 +46,7 @@ class App extends React.Component {
 
   render() {
     return(
-      <div>
+      <div className="app1">
         <h1>Reviews!! </h1>
       </div>
     )
