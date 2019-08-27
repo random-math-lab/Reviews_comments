@@ -5,26 +5,42 @@ class App extends React.Component {
     super (props);
 
     this.state = {
-      listingInfo : [],
+      listingsId : 1,
+      listingsInfo : [],
+      reviewsResponses: [],
     }
 
-    this.fetchInfo = this.fetchInfo.bind(this);
+    this.fetchListings = this.fetchListings.bind(this);
+    this.fetchReviewsResponses = this.fetchReviewsResponses.bind(this);
   }
 
-  fetchInfo() {
+  fetchListings() {
     const that = this;
-    fetch('/api/reviews')
+    fetch(`/api/listings?listingsId=${that.state.listingsId}`)
     .then(function(response) {
-      return response.json();s
+      return response.json();
     })
     .then(function(data) {
       console.log(data);
-      that.setState({listingInfo : data})
+      that.setState({listingsInfo : data})
     });
   }
 
+  fetchReviewsResponses() {
+    const that = this;
+    fetch(`/api/reviewsResponses?listingsId=${that.state.listingsId}`)
+    .then(function(response) {
+      return response.json();
+    })
+    .then(function(data) {
+      console.log(data);
+      that.setState({reviewsResponses : data})
+    })
+  }
+
   componentDidMount() {
-    this.fetchInfo();
+    this.fetchListings();
+    this.fetchReviewsResponses();
   }
 
   render() {
