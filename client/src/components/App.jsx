@@ -1,11 +1,12 @@
 import React from 'react';
+import fetch from "node-fetch";
 
 class App extends React.Component {
   constructor (props) {
     super (props);
 
     this.state = {
-      listingsId : 1,
+      listingsId : 2,
       listingsInfo : [],
       reviewsResponses: [],
     }
@@ -46,7 +47,7 @@ class App extends React.Component {
   render() {
     return(
       <div>
-        Reviews!
+        <h1>Reviews!! </h1>
       </div>
     )
   }

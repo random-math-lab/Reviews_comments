@@ -1,5 +1,11 @@
 {
-  "name": "",
+  "name": "reviews_comments",
+  "jest": {
+    "verbose": true,
+    "setupFilesAfterEnv": [
+      "./client/src/setupTests.js"
+    ]
+  },
   "version": "",
   "description": "",
   "author": "",
@@ -10,7 +16,8 @@
   "scripts": {
     "react-dev": "webpack -d --watch",
     "start": "nodemon server/server.js",
-    "seed" : "node server/seeder.js"
+    "seed": "node server/seeder.js",
+    "test": "jest"
   },
   "dependencies": {
     "body-parser": "^1.19.0",
@@ -18,6 +25,7 @@
     "faker": "^4.1.0",
     "jquery": "^3.4.1",
     "mysql": "^2.17.1",
+    "node-fetch": "^2.6.0",
     "nodemon": "^1.19.1",
     "react": "^16.9.0",
     "react-dom": "^16.9.0"
@@ -27,7 +35,10 @@
     "@babel/preset-env": "^7.5.5",
     "@babel/preset-react": "^7.0.0",
     "babel-loader": "^8.0.6",
+    "enzyme": "^3.10.0",
+    "enzyme-adapter-react-16": "^1.14.0",
     "eslint-config-hackreactor": "git://github.com/reactorcore/eslint-config-hackreactor",
+    "jest": "^24.9.0",
     "webpack": "^4.39.2",
     "webpack-cli": "^3.3.7"
   }
