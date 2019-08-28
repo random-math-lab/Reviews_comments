@@ -1,4 +1,7 @@
 import React from 'react';
+import ReviewsList from './ReviewsList.jsx';
+
+//for testing
 import fetch from 'node-fetch';
 
 class App extends React.Component {
@@ -22,7 +25,7 @@ class App extends React.Component {
         return response.json();
       })
       .then(function(data) {
-        console.log(data);
+        // console.log(data);
         that.setState({listingsInfo: data});
       });
   }
@@ -34,7 +37,7 @@ class App extends React.Component {
         return response.json();
       })
       .then(function(data) {
-        console.log(data);
+        // console.log(data);
         that.setState({reviewsResponses: data});
       });
   }
@@ -46,8 +49,14 @@ class App extends React.Component {
 
   render() {
     return (
-      <div className="app1">
-        <h1>Reviews!! </h1>
+      <div>
+        <h2>Reviews!! </h2>
+        <ReviewsList
+        listingsInfo={this.state.listingsInfo}
+        reviewsResponses={this.state.reviewsResponses}
+        />
+
+
       </div>
     );
   }

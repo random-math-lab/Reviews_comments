@@ -9,9 +9,9 @@ import React from 'react';
 Enzyme.configure({ adapter: new Adapter() });
 
 describe('<App /> rendering', () => {
-  it('should render one <h1>', () => {
+  it('should render one <h2>', () => {
     let wrapper = shallow(<App />);
-    expect(wrapper.children('h1')).toHaveLength(1);
+    expect(wrapper.children('h2')).toHaveLength(1);
   });
 
 
