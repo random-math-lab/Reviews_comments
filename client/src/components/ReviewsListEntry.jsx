@@ -2,7 +2,7 @@ import React from 'react';
 
 const ReviewsListEntry = (props) => {
 
-  console.log(props)
+  // console.log(props)
   return (
     <div className="reviewListEntry">
       <div className="traveler">
@@ -13,7 +13,7 @@ const ReviewsListEntry = (props) => {
         </div>
 
         <div className="travelerInfo">
-          <div> {props.review.traveler_firstName} </div>
+          <div id="travelerName"> {props.review.traveler_firstName} </div>
           <div> {props.review.date} </div>
         </div>
       </div>

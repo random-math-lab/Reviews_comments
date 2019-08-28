@@ -9,11 +9,24 @@ import React from 'react';
 Enzyme.configure({ adapter: new Adapter() });
 
 describe('<App /> rendering', () => {
-  it('should render one <h2>', () => {
+  it('renders without crashing', () => {
+    shallow(<App />);
+  });
+
+  it('should find the h2 header existence', () => {
     let wrapper = shallow(<App />);
-    expect(wrapper.children('h2')).toHaveLength(1);
+    let header = wrapper.find('#head');
+    expect(header).toHaveLength(1);
+  });
+
+  it('renders divider line in App', () => {
+    const wrapper = shallow(<App />);
+    expect(wrapper.contains(
+      <div
+        id="h2divide"> --------------------------------------------
+      </div>
+    )).toEqual(true);
   });
 
 
 });
-
