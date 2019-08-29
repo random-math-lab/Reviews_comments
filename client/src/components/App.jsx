@@ -4,6 +4,7 @@ import Ratings from 'react-ratings-declarative';
 import ReviewsList from './ReviewsList.jsx';
 import SearchBar from './SearchBar.jsx';
 import RatingsList from './RatingsList.jsx';
+import NoResults from './NoResults.jsx';
 
 
 //for testing
@@ -17,14 +18,15 @@ class App extends React.Component {
       listingsId: 2,
       listingsInfo: [],
       reviewsResponses: [],
-      searchedTerm: '',
+      searchedTerm: null,
       overallRating: 0,
     };
 
     this.fetchListings = this.fetchListings.bind(this);
     this.fetchReviewsResponses = this.fetchReviewsResponses.bind(this);
-    this.search = this.search.bind(this);
+    this.handleSearch = this.handleSearch.bind(this);
     this.handleOverallRating = this.handleOverallRating.bind(this);
+    this.clearSearch = this.clearSearch.bind(this);
   }
 
   fetchListings() {
@@ -49,7 +51,7 @@ class App extends React.Component {
       .then(function(data) {
         // console.log(data);
         that.setState({reviewsResponses: data});
-        // console.log(that.state.reviewsResponses)
+        console.log(that.state.reviewsResponses)
       });
   }
 
@@ -59,10 +61,6 @@ class App extends React.Component {
     //can I set a delay timer on this to ensure apis are finished?
   }
 
-  search(term) {
-    console.log(term);
-    //TODO
-  }
 
   handleOverallRating(overall) {
     this.setState({
@@ -70,14 +68,36 @@ class App extends React.Component {
     });
   }
 
+  handleSearch(term) {
+    console.log(term);
+    this.setState({
+      searchedTerm: term
+    })
+  }
+
+  filterReviewsBySearchedTerm() {
+    if (this.state.searchedTerm) {
+      return this.state.reviewsResponses.filter(review =>
+        review.body.toLowerCase().includes(this.state.searchedTerm.toLowerCase()))
+        console.log(review.body)
+    } else {
+      return this.state.reviewsResponses;
+    }
+  }
+    clearSearch() {
+      this.setState({ searchedTerm: null })
+    }
+
   render() {
     if (!this.state.listingsInfo.length && !this.state.reviewsResponses.length) {
       return <div>Loading</div>;
     }
+    const reviews = this.filterReviewsBySearchedTerm()
+    let limitedArray = reviews;
+
     return (
       <div>
         <div className="header">
-
           <h2 id="head"> {this.state.reviewsResponses.length} Reviews </h2>
           <div className="overallStars">
             <span>
@@ -90,13 +110,17 @@ class App extends React.Component {
               </Ratings>
             </span>
           </div>
-          <SearchBar search={this.search} />
 
+          <div id="search">
+            <SearchBar handleSearch={this.handleSearch} />
+          </div>
+
+        </div>
+
+        <br/>
+        <div id="h2divide">
         </div>
         <br/>
-
-        <div id="h2divide"> -
-        </div>
 
         <div>
           <RatingsList
@@ -106,14 +130,21 @@ class App extends React.Component {
         </div>
 
         <br/>
-        <br/>
+        <div id="ratingsDivide">
+        </div>
         <br/>
 
-        <div>
-          <ReviewsList
+        <div className="ReviewsList">
+          {limitedArray.length ? <ReviewsList
             listingsInfo={this.state.listingsInfo}
-            reviewsResponses={this.state.reviewsResponses}
-          />
+            reviewsResponses={limitedArray}
+          /> : <NoResults searchedTerm={this.state.searchedTerm} />}
+
+          <div id="clearSearch">
+            {this.state.searchedTerm && <button id="clearSearch" onClick={this.clearSearch} >Back to all reviews </button>}
+          </div>
+
+
         </div>
 
       </div>

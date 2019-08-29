@@ -6,6 +6,7 @@ class SearchBar extends React.Component {
 
     this.state = {
       value: '',
+      searchedTerm: null,
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -19,16 +20,22 @@ class SearchBar extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    this.props.search(this.state.value);
+    this.props.handleSearch(this.state.value);
+    this.setState({ searched: true })
+  }
+
+  handleClearSearch() {
+    this.props.clearSearch();
+    this.setState({ searched: false })
   }
 
 
   render() {
     return (
-      <form id="search" onSubmit={this.handleSubmit}>
+      <form onSubmit={this.handleSubmit}>
         <input
           onChange={this.handleChange}
-          type="text"
+          type="search"
           value={this.state.value}
           placeholder="Search reviews"
         />

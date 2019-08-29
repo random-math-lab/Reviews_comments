@@ -1,3 +1,6 @@
+// Must drop all tables manually in mysql before seeding.
+// Seeding iteself takes several minutes and you must keep the node connection online during this process.
+
 const faker = require('faker')
 const db = require('./db.js')
 
@@ -18,9 +21,6 @@ for (let listingCounter = 100; listingCounter > 0; listingCounter--) {
   }
   listings.push(listing);
 };
-// db.query('TRUNCATE TABLE responses')
-// db.query('TRUNCATE TABLE reviews')
-// db.query('TRUNCATE TABLE listings')
 // console.log(listings);
 // console.log(listings.length);
 for (let i = 0; i < listings.length; i ++) {
