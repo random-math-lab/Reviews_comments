@@ -18,14 +18,14 @@ class RatingsList extends React.Component {
   computeAccuracy() {
     const ratings = this.props.reviewsResponses;
     let accArr = [];
-    console.log(ratings)
+    // console.log(ratings);
     ratings.forEach((accRating) => {
       if (accRating.ratings_accuracy) {
         accArr.push(accRating.ratings_accuracy);
       }
     });
     let accAvg = 0;
-    console.log(accArr);
+    // console.log(accArr);
     for (let i = 0; i < accArr.length; i++) {
       // console.log(accArr[i])
       accAvg += accArr[i];
