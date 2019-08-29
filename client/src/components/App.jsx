@@ -32,8 +32,7 @@ class App extends React.Component {
       .then(function(data) {
         // console.log(data);
         that.setState({listingsInfo: data});
-      })
-      // .catch(error => console.error('Error:', error));
+      });
   }
 
   fetchReviewsResponses() {
@@ -45,8 +44,7 @@ class App extends React.Component {
       .then(function(data) {
         // console.log(data);
         that.setState({reviewsResponses: data});
-      })
-      // .catch(error => console.error('Error:', error));
+      });
   }
 
   componentDidMount() {
@@ -66,7 +64,7 @@ class App extends React.Component {
       if (overallRating.ratings_overall) {
         overallArr.push(overallRating.ratings_overall);
       }
-    })
+    });
     let overallAvg = 0;
     for (let i = 1; i < overallArr.length; i++) {
       overallAvg += overallArr[i];
@@ -80,18 +78,19 @@ class App extends React.Component {
       <div>
         <div className="header">
 
-            <h2 id="head"> {this.state.reviewsResponses.length} Reviews </h2>
-            <span id="overallStars"> {this.computeOverall()} </span>
-            <SearchBar search={this.search}/>
+          <h2 id="head"> {this.state.reviewsResponses.length}Reviews </h2>
+          <span id="overallStars">{this.computeOverall()} </span>
+          <SearchBar search={this.search} />
 
         </div>
 
         <div id="h2divide"> --------------------------------------------
         </div>
 
-        <div >
+        <div>
           <RatingsList
-          reviewsResponses={this.state.reviewsResponses}/>
+            reviewsResponses={this.state.reviewsResponses}
+          />
         </div>
 
         <br/>
@@ -100,12 +99,10 @@ class App extends React.Component {
 
         <div>
           <ReviewsList
-          listingsInfo={this.state.listingsInfo}
-          reviewsResponses={this.state.reviewsResponses}
+            listingsInfo={this.state.listingsInfo}
+            reviewsResponses={this.state.reviewsResponses}
           />
         </div>
-
-
 
       </div>
     );

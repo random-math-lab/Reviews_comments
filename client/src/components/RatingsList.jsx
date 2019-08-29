@@ -4,14 +4,14 @@ class RatingsList extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {}
+    this.state = {};
 
     this.computeAccuracy = this.computeAccuracy.bind(this);
     this.computeCommunication = this.computeCommunication.bind(this);
     this.computeCleanliness = this.computeCleanliness.bind(this);
     this.computeLocation = this.computeLocation.bind(this);
     this.computeCheckIn = this.computeCheckIn.bind(this);
-    this.computeValue- this.computeValue.bind(this);
+    this.computeValue = this.computeValue.bind(this);
 
   }
 
@@ -23,7 +23,7 @@ class RatingsList extends React.Component {
       if (accRating.ratings_accuracy) {
         accArr.push(accRating.ratings_accuracy);
       }
-    })
+    });
     let accAvg = 0;
     // console.log(accArr);
     for (let i = 1; i < accArr.length; i++) {
@@ -43,7 +43,7 @@ class RatingsList extends React.Component {
       if (comRating.ratings_communication) {
         comArr.push(comRating.ratings_communication);
       }
-    })
+    });
     let comAvg = 0;
     for (let i = 1; i < comArr.length; i++) {
       comAvg += comArr[i];
@@ -59,7 +59,7 @@ class RatingsList extends React.Component {
       if (cleanliRating.ratings_communication) {
         cleanliArr.push(cleanliRating.ratings_communication);
       }
-    })
+    });
     let cleanliAvg = 0;
     for (let i = 1; i < cleanliArr.length; i++) {
       cleanliAvg += cleanliArr[i];
@@ -75,7 +75,7 @@ class RatingsList extends React.Component {
       if (locRating.ratings_location) {
         locArr.push(locRating.ratings_location);
       }
-    })
+    });
     let locAvg = 0;
     for (let i = 1; i < locArr.length; i++) {
       locAvg += locArr[i];
@@ -91,7 +91,7 @@ class RatingsList extends React.Component {
       if (checkInRating.ratings_location) {
         checkInArr.push(checkInRating.ratings_location);
       }
-    })
+    });
     let checkInAvg = 0;
     for (let i = 1; i < checkInArr.length; i++) {
       checkInAvg += checkInArr[i];
@@ -107,7 +107,7 @@ class RatingsList extends React.Component {
       if (valueRating.ratings_value) {
         valueArr.push(valueRating.ratings_value);
       }
-    })
+    });
     let valueAvg = 0;
     for (let i = 1; i < valueArr.length; i++) {
       valueAvg += valueArr[i];
@@ -118,7 +118,7 @@ class RatingsList extends React.Component {
 
   render() {
     // console.log(this.props)
-    return(
+    return (
       <div className="ratingsSection">
         <div className="ratings1">
           <div> Accuracy {this.computeAccuracy()} </div>
@@ -133,9 +133,9 @@ class RatingsList extends React.Component {
 
         </div>
       </div>
-    )
+    );
   }
 }
 
 
-export default RatingsList
+export default RatingsList;
