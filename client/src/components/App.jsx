@@ -66,7 +66,7 @@ class App extends React.Component {
       }
     });
     let overallAvg = 0;
-    for (let i = 1; i < overallArr.length; i++) {
+    for (let i = 0; i < overallArr.length; i++) {
       overallAvg += overallArr[i];
     }
     overallAvg = overallAvg / overallArr.length;

@@ -6,10 +6,7 @@ const ReviewsList = (props) => {
   return (
     <div className="reviewsList">
       {props.reviewsResponses.map((review, i) => <ReviewsListEntry review={review} key={i} />)}
-
     </div>
-
-
   )
 }
 

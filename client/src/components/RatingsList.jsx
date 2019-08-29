@@ -18,15 +18,15 @@ class RatingsList extends React.Component {
   computeAccuracy() {
     const ratings = this.props.reviewsResponses;
     let accArr = [];
-    // console.log(ratings)
+    console.log(ratings)
     ratings.forEach((accRating) => {
       if (accRating.ratings_accuracy) {
         accArr.push(accRating.ratings_accuracy);
       }
     });
     let accAvg = 0;
-    // console.log(accArr);
-    for (let i = 1; i < accArr.length; i++) {
+    console.log(accArr);
+    for (let i = 0; i < accArr.length; i++) {
       // console.log(accArr[i])
       accAvg += accArr[i];
       // console.log(accAvg);
@@ -45,7 +45,7 @@ class RatingsList extends React.Component {
       }
     });
     let comAvg = 0;
-    for (let i = 1; i < comArr.length; i++) {
+    for (let i = 0; i < comArr.length; i++) {
       comAvg += comArr[i];
     }
     comAvg = comAvg / comArr.length;
@@ -61,7 +61,7 @@ class RatingsList extends React.Component {
       }
     });
     let cleanliAvg = 0;
-    for (let i = 1; i < cleanliArr.length; i++) {
+    for (let i = 0; i < cleanliArr.length; i++) {
       cleanliAvg += cleanliArr[i];
     }
     cleanliAvg = cleanliAvg / cleanliArr.length;
@@ -77,7 +77,7 @@ class RatingsList extends React.Component {
       }
     });
     let locAvg = 0;
-    for (let i = 1; i < locArr.length; i++) {
+    for (let i = 0; i < locArr.length; i++) {
       locAvg += locArr[i];
     }
     locAvg = locAvg / locArr.length;
@@ -93,7 +93,7 @@ class RatingsList extends React.Component {
       }
     });
     let checkInAvg = 0;
-    for (let i = 1; i < checkInArr.length; i++) {
+    for (let i = 0; i < checkInArr.length; i++) {
       checkInAvg += checkInArr[i];
     }
     checkInAvg = checkInAvg / checkInArr.length;
@@ -109,7 +109,7 @@ class RatingsList extends React.Component {
       }
     });
     let valueAvg = 0;
-    for (let i = 1; i < valueArr.length; i++) {
+    for (let i = 0; i < valueArr.length; i++) {
       valueAvg += valueArr[i];
     }
     valueAvg = valueAvg / valueArr.length;
