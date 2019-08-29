@@ -35,7 +35,7 @@ describe('<RatingsList /> rendering', () => {
   });
 
   it('should find the ratingsSection div tag existence', () => {
-      let wrapper = shallow(<RatingsList handleOverallRating={handleOverallRating}
+    let wrapper = shallow(<RatingsList handleOverallRating={handleOverallRating}
       reviewsResponses={[]} />);
     let ratingsSection = wrapper.find('.ratingsSection');
     expect(ratingsSection).toHaveLength(1);
