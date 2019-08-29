@@ -1,10 +1,18 @@
 import React from 'react';
+import Ratings from 'react-ratings-declarative';
 
 class RatingsList extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {};
+    this.state = {
+      accuracy: 0,
+      communication: 0,
+      cleanliness: 0,
+      location: 0,
+      checkIn: 0,
+      value: 0,
+    };
 
     this.computeAccuracy = this.computeAccuracy.bind(this);
     this.computeCommunication = this.computeCommunication.bind(this);
@@ -12,7 +20,35 @@ class RatingsList extends React.Component {
     this.computeLocation = this.computeLocation.bind(this);
     this.computeCheckIn = this.computeCheckIn.bind(this);
     this.computeValue = this.computeValue.bind(this);
+    this.computeOverall = this.computeOverall.bind(this);
 
+  }
+
+  componentDidMount() {
+    this.computeAccuracy();
+    this.computeCommunication();
+    this.computeCleanliness();
+    this.computeLocation();
+    this.computeCheckIn();
+    this.computeValue();
+    this.computeOverall();
+
+  }
+
+  computeOverall() {
+    const ratings = this.props.reviewsResponses;
+    let overallArr = [];
+    ratings.forEach((overallRating) => {
+      if (overallRating.ratings_overall) {
+        overallArr.push(overallRating.ratings_overall);
+      }
+    });
+    let overallAvg = 0;
+    for (let i = 0; i < overallArr.length; i++) {
+      overallAvg += overallArr[i];
+    }
+    overallAvg = overallAvg / overallArr.length;
+    return this.props.handleOverallRating(overallAvg);
   }
 
   computeAccuracy() {
@@ -33,6 +69,10 @@ class RatingsList extends React.Component {
     }
     accAvg = accAvg / accArr.length;
     // console.log(accAvg)
+    // console.log(accAvg)
+    this.setState({
+      accuracy: accAvg
+    });
     return accAvg;
   }
 
@@ -49,6 +89,9 @@ class RatingsList extends React.Component {
       comAvg += comArr[i];
     }
     comAvg = comAvg / comArr.length;
+    this.setState({
+      communication: comAvg
+    });
     return comAvg;
   }
 
@@ -65,6 +108,9 @@ class RatingsList extends React.Component {
       cleanliAvg += cleanliArr[i];
     }
     cleanliAvg = cleanliAvg / cleanliArr.length;
+    this.setState({
+      cleanliness: cleanliAvg
+    });
     return cleanliAvg;
   }
 
@@ -81,6 +127,9 @@ class RatingsList extends React.Component {
       locAvg += locArr[i];
     }
     locAvg = locAvg / locArr.length;
+    this.setState({
+      location: locAvg
+    });
     return locAvg;
   }
 
@@ -97,6 +146,9 @@ class RatingsList extends React.Component {
       checkInAvg += checkInArr[i];
     }
     checkInAvg = checkInAvg / checkInArr.length;
+    this.setState({
+      checkIn: checkInAvg
+    });
     return checkInAvg;
   }
 
@@ -113,6 +165,9 @@ class RatingsList extends React.Component {
       valueAvg += valueArr[i];
     }
     valueAvg = valueAvg / valueArr.length;
+    this.setState({
+      value: valueAvg
+    });
     return valueAvg;
   }
 
@@ -121,21 +176,69 @@ class RatingsList extends React.Component {
     return (
       <div className="ratingsSection">
         <div className="ratings1">
-          <div> Accuracy {this.computeAccuracy()} </div>
-          <div> Communication {this.computeCommunication()} </div>
-          <div> Cleanliness {this.computeCleanliness()} </div>
+          <div> Accuracy
+            <Ratings rating={this.state.accuracy} widgetRatedColors="007D8C" widgetDimensions="20px">
+              <Ratings.Widget />
+              <Ratings.Widget />
+              <Ratings.Widget />
+              <Ratings.Widget />
+              <Ratings.Widget />
+            </Ratings>
+          </div>
+
+          <div> Communication
+            <Ratings rating={this.state.communication} widgetRatedColors="007D8C" widgetDimensions="20px">
+              <Ratings.Widget />
+              <Ratings.Widget />
+              <Ratings.Widget />
+              <Ratings.Widget />
+              <Ratings.Widget />
+            </Ratings>
+          </div>
+
+          <div> Cleanliness
+            <Ratings rating={this.state.cleanliness} widgetRatedColors="007D8C" widgetDimensions="20px">
+              <Ratings.Widget />
+              <Ratings.Widget />
+              <Ratings.Widget />
+              <Ratings.Widget />
+              <Ratings.Widget />
+            </Ratings>
+          </div>
         </div>
 
         <div className="ratings2">
-          <div> Location {this.computeLocation()} </div>
-          <div> Check-in {this.computeCheckIn()} </div>
-          <div> Value {this.computeValue()} </div>
-
+          <div> Location
+            <Ratings rating={this.state.location} widgetRatedColors="007D8C" widgetDimensions="20px">
+              <Ratings.Widget />
+              <Ratings.Widget />
+              <Ratings.Widget />
+              <Ratings.Widget />
+              <Ratings.Widget />
+            </Ratings>
+          </div>
+          <div> Check-in
+            <Ratings rating={this.state.checkIn} widgetRatedColors="007D8C" widgetDimensions="20px">
+              <Ratings.Widget />
+              <Ratings.Widget />
+              <Ratings.Widget />
+              <Ratings.Widget />
+              <Ratings.Widget />
+            </Ratings>
+          </div>
+          <div> Value
+            <Ratings rating={this.state.value} widgetRatedColors="007D8C" widgetDimensions="20px">
+              <Ratings.Widget />
+              <Ratings.Widget />
+              <Ratings.Widget />
+              <Ratings.Widget />
+              <Ratings.Widget />
+            </Ratings>
+          </div>
         </div>
       </div>
     );
   }
 }
-
 
 export default RatingsList;
