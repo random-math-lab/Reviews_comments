@@ -1,11 +1,11 @@
 import React from 'react';
 
-const NoResults = (props) => {
+const ShowResults = (props) => {
 
   return (
     <div >
       <div id="NoResults">
-        None of our guests have mentioned "
+        {props.limitedArray.length} of our guests have mentioned "
         <b>{props.searchedTerm}</b>"
       </div>
       <span id="clearSearch" onClick={props.clearSearch}> Back to all reviews </span>
@@ -13,4 +13,4 @@ const NoResults = (props) => {
   )
 }
 
-export default NoResults;
+export default ShowResults;

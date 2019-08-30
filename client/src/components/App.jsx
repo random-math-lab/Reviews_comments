@@ -5,7 +5,7 @@ import ReviewsList from './ReviewsList.jsx';
 import SearchBar from './SearchBar.jsx';
 import RatingsList from './RatingsList.jsx';
 import NoResults from './NoResults.jsx';
-
+import ShowResults from './ShowResults.jsx';
 
 //for testing
 import fetch from 'node-fetch';
@@ -84,9 +84,10 @@ class App extends React.Component {
       return this.state.reviewsResponses;
     }
   }
-    clearSearch() {
-      this.setState({ searchedTerm: null })
-    }
+
+  clearSearch() {
+    this.setState({ searchedTerm: null })
+  }
 
   render() {
     if (!this.state.listingsInfo.length && !this.state.reviewsResponses.length) {
@@ -112,9 +113,8 @@ class App extends React.Component {
           </div>
 
           <div id="search">
-            <SearchBar handleSearch={this.handleSearch} />
+            <SearchBar clearSearch={this.clearSearch} handleSearch={this.handleSearch} />
           </div>
-
         </div>
 
         <br/>
@@ -123,10 +123,14 @@ class App extends React.Component {
         <br/>
 
         <div>
-          <RatingsList
+          {!this.state.searchedTerm && <RatingsList
             handleOverallRating={this.handleOverallRating}
-            reviewsResponses={this.state.reviewsResponses}
-          />
+            reviewsResponses={this.state.reviewsResponses}/>}
+        </div>
+
+        <div>
+          {this.state.searchedTerm && !limitedArray.length ? <NoResults clearSearch={this.clearSearch} searchedTerm={this.state.searchedTerm}/> : null}
+          {this.state.searchedTerm && limitedArray.length ? <ShowResults limitedArray={limitedArray} clearSearch={this.clearSearch} searchedTerm={this.state.searchedTerm}/> : null}
         </div>
 
         <br/>
@@ -138,13 +142,7 @@ class App extends React.Component {
           {limitedArray.length ? <ReviewsList
             listingsInfo={this.state.listingsInfo}
             reviewsResponses={limitedArray}
-          /> : <NoResults searchedTerm={this.state.searchedTerm} />}
-
-          <div id="clearSearch">
-            {this.state.searchedTerm && <button id="clearSearch" onClick={this.clearSearch} >Back to all reviews </button>}
-          </div>
-
-
+          /> : null}
         </div>
 
       </div>

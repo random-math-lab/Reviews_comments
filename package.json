@@ -14,6 +14,7 @@
     "node": ">=6.13.0"
   },
   "scripts": {
+    "db": "sudo service mysql start",
     "react-dev": "webpack -d --watch",
     "start": "nodemon server/server.js",
     "seed": "node server/seeder.js",

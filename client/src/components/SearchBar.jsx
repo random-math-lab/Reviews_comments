@@ -6,7 +6,6 @@ class SearchBar extends React.Component {
 
     this.state = {
       value: '',
-      searchedTerm: null,
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -24,11 +23,6 @@ class SearchBar extends React.Component {
     this.setState({ searched: true })
   }
 
-  handleClearSearch() {
-    this.props.clearSearch();
-    this.setState({ searched: false })
-  }
-
 
   render() {
     return (
@@ -36,6 +30,7 @@ class SearchBar extends React.Component {
         <input
           onChange={this.handleChange}
           type="search"
+          onClick={this.props.clearSearch}
           value={this.state.value}
           placeholder="Search reviews"
         />
