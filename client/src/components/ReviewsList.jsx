@@ -4,7 +4,7 @@ import ReviewsListEntry from './ReviewsListEntry.jsx';
 const ReviewsList = (props) => {
   // console.log(props)
   return (
-    <div className="reviewsList">
+    <div>
       {props.reviewsResponses.map((review, i) => <ReviewsListEntry review={review} key={i} />)}
     </div>
   );

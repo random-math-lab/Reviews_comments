@@ -15,10 +15,11 @@ class App extends React.Component {
     super (props);
 
     this.state = {
-      listingsId: 2,
+      listingsId: 3,
       listingsInfo: [],
       reviewsResponses: [],
-      searchedTerm: null,
+      searchedTerm: '',
+      value: '',
       overallRating: 0,
     };
 
@@ -27,6 +28,7 @@ class App extends React.Component {
     this.handleSearch = this.handleSearch.bind(this);
     this.handleOverallRating = this.handleOverallRating.bind(this);
     this.clearSearch = this.clearSearch.bind(this);
+    this.inputSearchedTerm = this.inputSearchedTerm.bind(this);
   }
 
   fetchListings() {
@@ -51,7 +53,7 @@ class App extends React.Component {
       .then(function(data) {
         // console.log(data);
         that.setState({reviewsResponses: data});
-        console.log(that.state.reviewsResponses)
+        // console.log(that.state.reviewsResponses)
       });
   }
 
@@ -71,7 +73,13 @@ class App extends React.Component {
   handleSearch(term) {
     console.log(term);
     this.setState({
-      searchedTerm: term
+      value: term
+    })
+  }
+
+  inputSearchedTerm() {
+    this.setState({
+      searchedTerm: this.state.value
     })
   }
 
@@ -86,7 +94,7 @@ class App extends React.Component {
   }
 
   clearSearch() {
-    this.setState({ searchedTerm: null })
+    this.setState({ searchedTerm: '', value: '', })
   }
 
   render() {
@@ -102,7 +110,7 @@ class App extends React.Component {
           <h2 id="head"> {this.state.reviewsResponses.length} Reviews </h2>
           <div className="overallStars">
             <span>
-              <Ratings rating={this.state.overallRating} widgetRatedColors="007D8C" widgetDimensions="20px">
+              <Ratings rating={this.state.overallRating} widgetRatedColors="007D8C" widgetDimensions="19px">
                 <Ratings.Widget />
                 <Ratings.Widget />
                 <Ratings.Widget />
@@ -113,14 +121,18 @@ class App extends React.Component {
           </div>
 
           <div id="search">
-            <SearchBar clearSearch={this.clearSearch} handleSearch={this.handleSearch} />
+            <SearchBar
+            inputSearchedTerm={this.inputSearchedTerm}
+            value={this.state.value}
+            clearSearch={this.clearSearch}
+            changeSearch={this.changeSearch}
+            handleSearch={this.handleSearch} />
           </div>
         </div>
 
         <br/>
         <div id="h2divide">
         </div>
-        <br/>
 
         <div>
           {!this.state.searchedTerm && <RatingsList
@@ -133,12 +145,12 @@ class App extends React.Component {
           {this.state.searchedTerm && limitedArray.length ? <ShowResults limitedArray={limitedArray} clearSearch={this.clearSearch} searchedTerm={this.state.searchedTerm}/> : null}
         </div>
 
-        <br/>
-        <div id="ratingsDivide">
-        </div>
-        <br/>
 
-        <div className="ReviewsList">
+        {/* <div id="ratingsDivide">
+        </div> */}
+        {/* <br/> */}
+
+        <div className="reviewsList">
           {limitedArray.length ? <ReviewsList
             listingsInfo={this.state.listingsInfo}
             reviewsResponses={limitedArray}

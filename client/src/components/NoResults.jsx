@@ -3,8 +3,8 @@ import React from 'react';
 const NoResults = (props) => {
 
   return (
-    <div >
-      <div id="NoResults">
+    <div>
+      <div id="results">
         None of our guests have mentioned "
         <b>{props.searchedTerm}</b>"
       </div>
@@ -13,4 +13,4 @@ const NoResults = (props) => {
   )
 }
 
-export default NoResults;
+export default NoResults
