@@ -1,7 +1,7 @@
 import React from 'react';
 
 const ShowResults = (props) => {
-  console.log(props)
+  console.log(props);
   return (
     <div id="shown">
       <div id="results">
@@ -13,7 +13,7 @@ const ShowResults = (props) => {
       <div id="ratingsDivide">
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default ShowResults;

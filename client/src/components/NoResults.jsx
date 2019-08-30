@@ -10,7 +10,7 @@ const NoResults = (props) => {
       </div>
       <span id="clearSearch" onClick={props.clearSearch}> Back to all reviews </span>
     </div>
-  )
-}
+  );
+};
 
-export default NoResults
+export default NoResults;

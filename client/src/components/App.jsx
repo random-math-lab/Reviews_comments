@@ -15,7 +15,7 @@ class App extends React.Component {
     super (props);
 
     this.state = {
-      listingsId: 3,
+      listingsId: 44,
       listingsInfo: [],
       reviewsResponses: [],
       searchedTerm: '',
@@ -74,34 +74,33 @@ class App extends React.Component {
     console.log(term);
     this.setState({
       value: term
-    })
+    });
   }
 
   inputSearchedTerm() {
     this.setState({
       searchedTerm: this.state.value
-    })
+    });
   }
 
   filterReviewsBySearchedTerm() {
     if (this.state.searchedTerm) {
       return this.state.reviewsResponses.filter(review =>
-        review.body.toLowerCase().includes(this.state.searchedTerm.toLowerCase()))
-        console.log(review.body)
+        review.body.toLowerCase().includes(this.state.searchedTerm.toLowerCase()));
     } else {
       return this.state.reviewsResponses;
     }
   }
 
   clearSearch() {
-    this.setState({ searchedTerm: '', value: '', })
+    this.setState({ searchedTerm: '', value: '', });
   }
 
   render() {
     if (!this.state.listingsInfo.length && !this.state.reviewsResponses.length) {
       return <div>Loading</div>;
     }
-    const reviews = this.filterReviewsBySearchedTerm()
+    const reviews = this.filterReviewsBySearchedTerm();
     let limitedArray = reviews;
 
     return (
@@ -122,11 +121,11 @@ class App extends React.Component {
 
           <div id="search">
             <SearchBar
-            inputSearchedTerm={this.inputSearchedTerm}
-            value={this.state.value}
-            clearSearch={this.clearSearch}
-            changeSearch={this.changeSearch}
-            handleSearch={this.handleSearch} />
+              inputSearchedTerm={this.inputSearchedTerm}
+              value={this.state.value}
+              clearSearch={this.clearSearch}
+              changeSearch={this.changeSearch}
+              handleSearch={this.handleSearch} />
           </div>
         </div>
 

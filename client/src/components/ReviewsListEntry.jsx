@@ -14,15 +14,17 @@ class ReviewsListEntry extends React.Component {
   toggleisHidden () {
     this.setState({
       isHidden: !this.state.isHidden,
-    })
+    });
   }
 
   render () {
-    let limitedReview = this.props.review.body;
-    if (limitedReview.length > 250 && this.state.isHidden === true) {
-      limitedReview = limitedReview.substring(0, 250)
+    // console.log(this.props.review.body)
+    let limitedReview = '';
+    // console.log(limitedReview)
+    if (this.props.review.body.length > 250 && this.state.isHidden === true) {
+      limitedReview = this.props.review.body.substring(0, 250);
     } else {
-      limitedReview = this.props.review.body
+      limitedReview = this.props.review.body;
     }
 
     return (
