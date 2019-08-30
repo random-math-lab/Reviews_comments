@@ -52,7 +52,14 @@ class App extends React.Component {
       })
       .then(function(data) {
         // console.log(data);
-        that.setState({reviewsResponses: data});
+        function sortFunction(a, b) {
+          const dateA = new Date(a.date).getTime();
+          const dateB = new Date(b.date).getTime();
+          return dateA < dateB ? 1 : -1;
+        }
+        const chronilogicalReviews = data.sort(sortFunction);
+        console.log(chronilogicalReviews)
+        that.setState({reviewsResponses: chronilogicalReviews});
         // console.log(that.state.reviewsResponses)
       });
   }
