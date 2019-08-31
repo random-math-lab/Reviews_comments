@@ -23,7 +23,7 @@ describe('<App /> rendering', () => {
   it('should display loading if no data loaded', () => {
     let wrapper = shallow(<App />);
     let header = wrapper.text('div');
-    expect(header).toEqual('Loading');
+    expect(header).toEqual('Vetting reviews...');
   });
 });
 
@@ -40,9 +40,7 @@ describe('<RatingsList /> rendering', () => {
     let ratingsSection = wrapper.find('.ratingsSection');
     expect(ratingsSection).toHaveLength(1);
   });
-
   //
-
 });
 
 // Testing ReviewsList.jsx
@@ -52,9 +50,7 @@ describe('<ReviewsList /> rendering', () => {
       listingsInfo={[]}
       reviewsResponses={[]} />);
   });
-
   //TODO - test props recevied and mapping props down?
-
 });
 
 

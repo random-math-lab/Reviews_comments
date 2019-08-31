@@ -17,7 +17,7 @@ class App extends React.Component {
     super (props);
 
     this.state = {
-      listingsId: 42,
+      listingsId: 25,
       listingsInfo: [],
       reviewsInfo: [],
       carouseledReviewsInfo: [],
@@ -182,7 +182,7 @@ class App extends React.Component {
           /> : null}
         </div>
         <div>
-          {this.state.searchedTerm && !limitedArray.length ? null :
+          {this.state.searchedTerm ? null :
           <PageList goToPage={this.goToPage} carouseledReviewsInfo={this.state.carouseledReviewsInfo}/>}
         </div>
       </div>

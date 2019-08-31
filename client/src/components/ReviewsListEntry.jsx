@@ -19,7 +19,7 @@ class ReviewsListEntry extends React.Component {
   }
 
   render () {
-    console.log(this.props)
+    // console.log(this.props)
     let limitedReview = '';
     // console.log(limitedReview)
     if (this.props.review.body.length > 250 && this.state.isHidden === true) {
@@ -52,10 +52,11 @@ class ReviewsListEntry extends React.Component {
 
 
         <div>
-          <Responses
+          {this.props.review.listingsId % 2 !== 0 ? null : <Responses
           listingsInfo={this.props.listingsInfo}
           response={this.props.review.response}
-          response_date={this.props.review.response_date}/>
+          response_date={this.props.review.response_date}/>}
+
         </div>
 
         <div className="divider">
