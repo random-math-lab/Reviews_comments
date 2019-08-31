@@ -1,4 +1,5 @@
 import React from 'react';
+import Responses from './responses.jsx';
 
 class ReviewsListEntry extends React.Component {
   constructor (props) {
@@ -18,7 +19,7 @@ class ReviewsListEntry extends React.Component {
   }
 
   render () {
-    // console.log(this.props.review.body)
+    console.log(this.props)
     let limitedReview = '';
     // console.log(limitedReview)
     if (this.props.review.body.length > 250 && this.state.isHidden === true) {
@@ -47,6 +48,15 @@ class ReviewsListEntry extends React.Component {
             {limitedReview}
             {this.state.isHidden && this.props.review.body.length > 250 ? <span id="readMore" onClick={this.toggleisHidden}>...Read More</span> : null}
           </div>
+        </div>
+
+        <br/>
+
+        <div>
+          <Responses
+          listingsInfo={this.props.listingsInfo}
+          response={this.props.review.response}
+          response_date={this.props.review.response_date}/>
         </div>
 
         <div className="divider">

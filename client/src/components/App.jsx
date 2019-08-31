@@ -7,6 +7,7 @@ import SearchBar from './SearchBar.jsx';
 import RatingsList from './RatingsList.jsx';
 import NoResults from './NoResults.jsx';
 import ShowResults from './ShowResults.jsx';
+import PageList from './PageList.jsx';
 
 //for testing
 import fetch from 'node-fetch';
@@ -33,6 +34,7 @@ class App extends React.Component {
     this.handleOverallRating = this.handleOverallRating.bind(this);
     this.clearSearch = this.clearSearch.bind(this);
     this.inputSearchedTerm = this.inputSearchedTerm.bind(this);
+    this.goToPage = this.goToPage.bind(this);
   }
 
   fetchListings() {
@@ -63,13 +65,13 @@ class App extends React.Component {
         }
         const chronilogicalReviews = data.sort(sortFunction);
         that.setState({ reviewsInfo: chronilogicalReviews });
-        console.log(that.state.reviewsInfo);
+        // console.log(that.state.reviewsInfo);
 
         const carouseledReviews = _.chunk(chronilogicalReviews, 7);
         that.setState({ carouseledReviewsInfo: carouseledReviews });
-        console.log(that.state.carouseledReviewsInfo);
-        that.setState({ reviewsResponses: carouseledReviews[2] });
-        console.log(that.state.reviewsResponses);
+        // console.log(that.state.carouseledReviewsInfo);
+        that.setState({ reviewsResponses: carouseledReviews[0] });
+        // console.log(that.state.reviewsResponses);
         // console.log(that.state.reviewsResponses)
       });
   }
@@ -79,7 +81,6 @@ class App extends React.Component {
     this.fetchListings();
     //can I set a delay timer on this to ensure apis are finished?
   }
-
 
   handleOverallRating(overall) {
     this.setState({
@@ -113,13 +114,21 @@ class App extends React.Component {
     this.setState({ searchedTerm: '', value: '', });
   }
 
+  goToPage(pageNum){
+    this.setState({
+      page: pageNum
+    })
+    this.setState({
+      reviewsResponses: this.state.carouseledReviewsInfo[pageNum -1]
+    })
+  }
+
   render() {
     if (!this.state.listingsInfo.length && !this.state.reviewsResponses.length) {
-      return <div>Loading</div>;
+      return <div>Vetting reviews...</div>;
     }
     const reviews = this.filterReviewsBySearchedTerm();
     let limitedArray = reviews;
-
 
     return (
       <div>
@@ -173,8 +182,8 @@ class App extends React.Component {
           /> : null}
         </div>
         <div>
-          {}
-
+          {this.state.searchedTerm && !limitedArray.length ? null :
+          <PageList goToPage={this.goToPage} carouseledReviewsInfo={this.state.carouseledReviewsInfo}/>}
         </div>
       </div>
     );
