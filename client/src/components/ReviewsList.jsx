@@ -13,9 +13,6 @@ import ReviewsListEntry from './ReviewsListEntry.jsx';
 //       carousel: [],
 //       page: 1,
 //     }
-
-//     sortReviews(this.props.reviewsResponses)
-
 //   }
 //   render () {
 //     console.log(this.props)
@@ -28,7 +25,6 @@ import ReviewsListEntry from './ReviewsListEntry.jsx';
 // }
 
 const ReviewsList = (props) => {
-  // console.log(props)
   return (
     <div>
       {props.reviewsResponses.map((review, i) => <ReviewsListEntry review={review} key={i} />)}

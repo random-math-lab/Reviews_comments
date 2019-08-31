@@ -185,7 +185,7 @@ class RatingsList extends React.Component {
         </div>
 
         <div className="ratings3">
-          <Ratings rating={this.state.accuracy} widgetRatedColors="007D8C" widgetDimensions="19px">
+          <Ratings rating={this.state.accuracy} widgetRatedColors="007D8C" widgetDimensions="19px" widgetSpacings="1px">
             <Ratings.Widget />
             <Ratings.Widget />
             <Ratings.Widget />
@@ -193,14 +193,14 @@ class RatingsList extends React.Component {
             <Ratings.Widget />
           </Ratings>
 
-          <Ratings rating={this.state.communication} widgetRatedColors="007D8C" widgetDimensions="19px">
+          <Ratings rating={this.state.communication} widgetRatedColors="007D8C" widgetDimensions="19px" widgetSpacings="1px">
             <Ratings.Widget />
             <Ratings.Widget />
             <Ratings.Widget />
             <Ratings.Widget />
             <Ratings.Widget />
           </Ratings>
-          <Ratings rating={this.state.cleanliness} widgetRatedColors="007D8C" widgetDimensions="19px">
+          <Ratings rating={this.state.cleanliness} widgetRatedColors="007D8C" widgetDimensions="19px" widgetSpacings="1px">
             <Ratings.Widget />
             <Ratings.Widget />
             <Ratings.Widget />
@@ -219,7 +219,7 @@ class RatingsList extends React.Component {
         </div>
         <div className="ratings4">
           <div>
-            <Ratings rating={this.state.location} widgetRatedColors="007D8C" widgetDimensions="19px">
+            <Ratings rating={this.state.location} widgetRatedColors="007D8C" widgetDimensions="19px" widgetSpacings="1px">
               <Ratings.Widget />
               <Ratings.Widget />
               <Ratings.Widget />
@@ -228,7 +228,7 @@ class RatingsList extends React.Component {
             </Ratings>
           </div>
           <div>
-            <Ratings rating={this.state.checkIn} widgetRatedColors="007D8C" widgetDimensions="19px">
+            <Ratings rating={this.state.checkIn} widgetRatedColors="007D8C" widgetDimensions="19px" widgetSpacings="1px">
               <Ratings.Widget />
               <Ratings.Widget />
               <Ratings.Widget />
@@ -237,7 +237,7 @@ class RatingsList extends React.Component {
             </Ratings>
           </div>
           <div>
-            <Ratings rating={this.state.value} widgetRatedColors="007D8C" widgetDimensions="19px">
+            <Ratings rating={this.state.value} widgetRatedColors="007D8C" widgetDimensions="19px" widgetSpacings="1px">
               <Ratings.Widget />
               <Ratings.Widget />
               <Ratings.Widget />

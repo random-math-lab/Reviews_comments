@@ -1,5 +1,6 @@
 import React from 'react';
 import Ratings from 'react-ratings-declarative';
+import chunk from 'lodash';
 
 import ReviewsList from './ReviewsList.jsx';
 import SearchBar from './SearchBar.jsx';
@@ -15,9 +16,12 @@ class App extends React.Component {
     super (props);
 
     this.state = {
-      listingsId: 44,
+      listingsId: 42,
       listingsInfo: [],
+      reviewsInfo: [],
+      carouseledReviewsInfo: [],
       reviewsResponses: [],
+      page: 1,
       searchedTerm: '',
       value: '',
       overallRating: 0,
@@ -39,7 +43,7 @@ class App extends React.Component {
       })
       .then(function(data) {
         // console.log(data);
-        that.setState({listingsInfo: data});
+        that.setState({ listingsInfo: data });
         // console.log(that.state.listingsInfo)
       });
   }
@@ -58,8 +62,14 @@ class App extends React.Component {
           return dateA < dateB ? 1 : -1;
         }
         const chronilogicalReviews = data.sort(sortFunction);
-        console.log(chronilogicalReviews)
-        that.setState({reviewsResponses: chronilogicalReviews});
+        that.setState({ reviewsInfo: chronilogicalReviews });
+        console.log(that.state.reviewsInfo);
+
+        const carouseledReviews = _.chunk(chronilogicalReviews, 7);
+        that.setState({ carouseledReviewsInfo: carouseledReviews });
+        console.log(that.state.carouseledReviewsInfo);
+        that.setState({ reviewsResponses: carouseledReviews[2] });
+        console.log(that.state.reviewsResponses);
         // console.log(that.state.reviewsResponses)
       });
   }
@@ -78,7 +88,7 @@ class App extends React.Component {
   }
 
   handleSearch(term) {
-    console.log(term);
+    // console.log(term);
     this.setState({
       value: term
     });
@@ -92,7 +102,7 @@ class App extends React.Component {
 
   filterReviewsBySearchedTerm() {
     if (this.state.searchedTerm) {
-      return this.state.reviewsResponses.filter(review =>
+      return this.state.reviewsInfo.filter(review =>
         review.body.toLowerCase().includes(this.state.searchedTerm.toLowerCase()));
     } else {
       return this.state.reviewsResponses;
@@ -110,13 +120,14 @@ class App extends React.Component {
     const reviews = this.filterReviewsBySearchedTerm();
     let limitedArray = reviews;
 
+
     return (
       <div>
         <div className="header">
-          <h2 id="head"> {this.state.reviewsResponses.length} Reviews </h2>
+          <h2 id="head"> {this.state.reviewsInfo.length} Reviews </h2>
           <div className="overallStars">
             <span>
-              <Ratings rating={this.state.overallRating} widgetRatedColors="007D8C" widgetDimensions="19px">
+              <Ratings rating={this.state.overallRating} widgetRatedColors="007D8C" widgetDimensions="19px" widgetSpacings="1px">
                 <Ratings.Widget />
                 <Ratings.Widget />
                 <Ratings.Widget />
@@ -151,7 +162,6 @@ class App extends React.Component {
           {this.state.searchedTerm && limitedArray.length ? <ShowResults limitedArray={limitedArray} clearSearch={this.clearSearch} searchedTerm={this.state.searchedTerm}/> : null}
         </div>
 
-
         {/* <div id="ratingsDivide">
         </div> */}
         {/* <br/> */}
@@ -162,7 +172,10 @@ class App extends React.Component {
             reviewsResponses={limitedArray}
           /> : null}
         </div>
+        <div>
+          {}
 
+        </div>
       </div>
     );
   }
