@@ -1,11 +1,34 @@
 import React from 'react';
 import ReviewsListEntry from './ReviewsListEntry.jsx';
 
+// an array of arrays
+//TODO sort by most recent?
+//do in app component?
+
+// class ReviewsList extends React.Component {
+//   constructor (props) {
+//     super (props);
+
+//     this.state = {
+//       carousel: [],
+//       page: 1,
+//     }
+//   }
+//   render () {
+//     console.log(this.props)
+//     return (
+//       <div>
+//         {this.props.reviewsResponses.map((review, i) => <ReviewsListEntry review={review} key={i} />)}
+//       </div>
+//     )
+//   }
+// }
+
 const ReviewsList = (props) => {
   // console.log(props)
   return (
-    <div className="reviewsList">
-      {props.reviewsResponses.map((review, i) => <ReviewsListEntry review={review} key={i} />)}
+    <div>
+      {props.reviewsResponses.map((review, i) => <ReviewsListEntry listingsInfo={props.listingsInfo} review={review} key={i} />)}
     </div>
   );
 };

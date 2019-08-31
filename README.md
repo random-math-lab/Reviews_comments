@@ -1,6 +1,7 @@
 # Project Name
 
 > Project description
+The reviews component of an online reservation and booking site for vacation rental stays.
 
 ## Related Projects
 
@@ -18,6 +19,8 @@
 ## Usage
 
 > Some usage instructions
+To run, start database, start server, enter localhost:3000
+
 
 ## Requirements
 

@@ -4,33 +4,28 @@ class SearchBar extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      value: '',
-    };
-
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
+
   handleChange(event) {
-    this.setState({
-      value: event.target.value
-    });
+    this.props.handleSearch(event.target.value);
   }
 
   handleSubmit(event) {
     event.preventDefault();
-    this.props.search(this.state.value);
+    this.props.inputSearchedTerm();
   }
-
 
   render() {
     return (
-      <form id="search" onSubmit={this.handleSubmit}>
-        <input
+      <form onSubmit={this.handleSubmit}>
+        <input id="form"
           onChange={this.handleChange}
-          type="text"
-          value={this.state.value}
-          placeholder="Search reviews"
+          type="search"
+          onClick={this.props.clearSearch}
+          value={this.props.value}
+          placeholder="🔍 Search reviews"
         />
       </form>
     );
