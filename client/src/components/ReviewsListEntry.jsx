@@ -50,7 +50,6 @@ class ReviewsListEntry extends React.Component {
           </div>
         </div>
 
-        <br/>
 
         <div>
           <Responses
