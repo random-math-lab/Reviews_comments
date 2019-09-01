@@ -5,7 +5,7 @@ const Responses = (props) => {
   let response = '';
   let hostName = '';
   let responseDate = '';
-  if(props.listingsInfo.length) {
+  if (props.listingsInfo.length) {
     // console.log(props);
     hostPic = props.listingsInfo[0].img;
     response = props.response;
@@ -43,7 +43,7 @@ const Responses = (props) => {
 
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default Responses;

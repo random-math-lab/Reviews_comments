@@ -114,13 +114,13 @@ class App extends React.Component {
     this.setState({ searchedTerm: '', value: '', });
   }
 
-  goToPage(pageNum){
+  goToPage(pageNum) {
     this.setState({
       page: pageNum
-    })
+    });
     this.setState({
-      reviewsResponses: this.state.carouseledReviewsInfo[pageNum -1]
-    })
+      reviewsResponses: this.state.carouseledReviewsInfo[pageNum - 1]
+    });
   }
 
   render() {
@@ -182,8 +182,7 @@ class App extends React.Component {
           /> : null}
         </div>
         <div>
-          {this.state.searchedTerm ? null :
-          <PageList goToPage={this.goToPage} carouseledReviewsInfo={this.state.carouseledReviewsInfo}/>}
+          {this.state.searchedTerm ? null : <PageList goToPage={this.goToPage} carouseledReviewsInfo={this.state.carouseledReviewsInfo}/>}
         </div>
       </div>
     );
