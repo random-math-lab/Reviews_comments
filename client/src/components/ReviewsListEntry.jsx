@@ -50,7 +50,6 @@ class ReviewsListEntry extends React.Component {
           </div>
         </div>
 
-
         <div>
           {this.props.review.listingsId % 2 !== 0 ? null : <Responses
             listingsInfo={this.props.listingsInfo}

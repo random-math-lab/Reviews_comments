@@ -66,7 +66,6 @@ class App extends React.Component {
         const chronilogicalReviews = data.sort(sortFunction);
         that.setState({ reviewsInfo: chronilogicalReviews });
         // console.log(that.state.reviewsInfo);
-
         const carouseledReviews = _.chunk(chronilogicalReviews, 7);
         that.setState({ carouseledReviewsInfo: carouseledReviews });
         // console.log(that.state.carouseledReviewsInfo);
@@ -145,7 +144,6 @@ class App extends React.Component {
               </Ratings>
             </span>
           </div>
-
           <div id="search">
             <SearchBar
               inputSearchedTerm={this.inputSearchedTerm}
@@ -155,26 +153,21 @@ class App extends React.Component {
               handleSearch={this.handleSearch} />
           </div>
         </div>
-
         <br/>
         <div id="h2divide">
         </div>
-
         <div>
           {!this.state.searchedTerm && <RatingsList
             handleOverallRating={this.handleOverallRating}
             reviewsResponses={this.state.reviewsResponses}/>}
         </div>
-
         <div>
           {this.state.searchedTerm && !limitedArray.length ? <NoResults clearSearch={this.clearSearch} searchedTerm={this.state.searchedTerm}/> : null}
           {this.state.searchedTerm && limitedArray.length ? <ShowResults limitedArray={limitedArray} clearSearch={this.clearSearch} searchedTerm={this.state.searchedTerm}/> : null}
         </div>
-
         {/* <div id="ratingsDivide">
         </div> */}
         {/* <br/> */}
-
         <div className="reviewsList">
           {limitedArray.length ? <ReviewsList
             listingsInfo={this.state.listingsInfo}
