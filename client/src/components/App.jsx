@@ -174,7 +174,7 @@ class App extends React.Component {
             reviewsResponses={limitedArray}
           /> : null}
         </div>
-        <div>
+        <div id="pageList">
           {this.state.searchedTerm ? null : <PageList goToPage={this.goToPage} carouseledReviewsInfo={this.state.carouseledReviewsInfo}/>}
         </div>
       </div>

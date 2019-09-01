@@ -15,8 +15,10 @@ class PageListEntry extends React.Component {
   render () {
     // console.log(this.props)
     return(
-      <span className="pages" onClick={this.handleGoToPage}> {this.props.page}
-      </span>
+      <div className="pages">
+        <span onClick={this.handleGoToPage}> {this.props.page}
+        </span>
+      </div>
     )
   }
 }
