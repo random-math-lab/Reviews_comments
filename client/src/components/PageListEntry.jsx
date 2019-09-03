@@ -9,7 +9,7 @@ class PageListEntry extends React.Component {
   }
 
   handleGoToPage() {
-    this.props.goToPage(this.props.page)
+    this.props.goToPage(this.props.page);
   }
 
   render () {
@@ -19,7 +19,7 @@ class PageListEntry extends React.Component {
         <span onClick={this.handleGoToPage}> {this.props.page}
         </span>
       </div>
-    )
+    );
   }
 }
 
