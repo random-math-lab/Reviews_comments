@@ -1,15 +1,15 @@
-const express = require('express')
-const app = express()
-const PORT = 3001
-const bodyParser = require('body-parser')
-const db = require('./db.js')
+const express = require('express');
+const app = express();
+const PORT = 3001;
+const bodyParser = require('body-parser');
+const db = require('./db.js');
 
 
-app.use(express.static(__dirname + '/../client/dist'))
-app.use(bodyParser.json())
-app.use(bodyParser.urlencoded())
+app.use(express.static(__dirname + '/../client/dist'));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded());
 
-app.get('/api/listings', (req,res) => {
+app.get('/api/listings', (req, res) => {
   const queryListings = `SELECT * FROM listings WHERE id = ${req.query.listingsId}`;
   db.query(queryListings, 'utf-8', (err, data) => {
     if (err) {
@@ -18,8 +18,8 @@ app.get('/api/listings', (req,res) => {
       console.log(data);
       res.send(data);
     }
-  })
-})
+  });
+});
 
 app.get('/api/reviewsResponses', (req, res) => {
   // const query = 'SELECT * FROM listings INNER JOIN reviews ON listings.id = reviews.listingsId INNER JOIN responses ON reviews.id = responses.reviewId';
@@ -32,7 +32,7 @@ app.get('/api/reviewsResponses', (req, res) => {
       console.log(data);
       res.send(data);
     }
-  })
-})
+  });
+});
 
-app.listen(PORT, () => console.log(`OH YA on port ${PORT}!`))
+app.listen(PORT, () => console.log(`OH YA on port ${PORT}!`));

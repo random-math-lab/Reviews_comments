@@ -17,14 +17,14 @@ class PageListEntry extends React.Component {
     // console.log(this.props.currentPage)
     let pageNum;
     if (this.props.currentPage === this.props.page) {
-      pageNum = <div className="activePage"> <span>{this.props.page} </span></div>
+      pageNum = <div className="activePage"> <span>{this.props.page} </span></div>;
     } else {
       pageNum = <div className="pages">
         <span onClick={this.handleGoToPage}> {this.props.page}
         </span>
-      </div>
+      </div>;
     }
-    return(
+    return (
       <div>
         {pageNum}
       </div>
