@@ -17,7 +17,7 @@ class App extends React.Component {
     super (props);
 
     this.state = {
-      listingsId: 25,
+      listingsId: this.getRandomIntInclusive(1, 100),
       listingsInfo: [],
       reviewsInfo: [],
       carouseledReviewsInfo: [],
@@ -35,6 +35,8 @@ class App extends React.Component {
     this.clearSearch = this.clearSearch.bind(this);
     this.inputSearchedTerm = this.inputSearchedTerm.bind(this);
     this.goToPage = this.goToPage.bind(this);
+    this.getRandomIntInclusive = this.getRandomIntInclusive.bind(this);
+    this.handleScroll = this.handleScroll.bind(this);
   }
 
   fetchListings() {
@@ -73,6 +75,12 @@ class App extends React.Component {
         // console.log(that.state.reviewsResponses);
         // console.log(that.state.reviewsResponses)
       });
+  }
+
+  getRandomIntInclusive(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1)) + min; //The maximum is inclusive and the minimum is inclusive
   }
 
   componentDidMount() {
@@ -122,6 +130,13 @@ class App extends React.Component {
     });
   }
 
+  handleScroll() {
+    window.scroll({
+      top: 200,
+      behavior: 'smooth'
+    });
+  }
+
   render() {
     if (!this.state.listingsInfo.length && !this.state.reviewsResponses.length) {
       return <div>Vetting reviews...</div>;
@@ -165,9 +180,6 @@ class App extends React.Component {
           {this.state.searchedTerm && !limitedArray.length ? <NoResults clearSearch={this.clearSearch} searchedTerm={this.state.searchedTerm}/> : null}
           {this.state.searchedTerm && limitedArray.length ? <ShowResults limitedArray={limitedArray} clearSearch={this.clearSearch} searchedTerm={this.state.searchedTerm}/> : null}
         </div>
-        {/* <div id="ratingsDivide">
-        </div> */}
-        {/* <br/> */}
         <div className="reviewsList">
           {limitedArray.length ? <ReviewsList
             listingsInfo={this.state.listingsInfo}
@@ -175,7 +187,7 @@ class App extends React.Component {
           /> : null}
         </div>
         <div id="pageList">
-          {this.state.searchedTerm ? null : <PageList goToPage={this.goToPage} carouseledReviewsInfo={this.state.carouseledReviewsInfo}/>}
+          {this.state.searchedTerm ? null : <PageList handleScroll={this.handleScroll} currentPage={this.state.page} goToPage={this.goToPage}carouseledReviewsInfo={this.state.carouseledReviewsInfo}/>}
         </div>
       </div>
     );

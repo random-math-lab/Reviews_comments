@@ -10,18 +10,26 @@ class PageListEntry extends React.Component {
 
   handleGoToPage() {
     this.props.goToPage(this.props.page);
+    this.props.handleScroll();
   }
 
   render () {
-    // console.log(this.props)
-    return(
-      <div className="pages">
+    // console.log(this.props.currentPage)
+    let pageNum;
+    if (this.props.currentPage === this.props.page) {
+      pageNum = <div className="activePage"> <span>{this.props.page} </span></div>
+    } else {
+      pageNum = <div className="pages">
         <span onClick={this.handleGoToPage}> {this.props.page}
         </span>
+      </div>
+    }
+    return(
+      <div>
+        {pageNum}
       </div>
     );
   }
 }
-
 
 export default PageListEntry;
