@@ -5,8 +5,7 @@ const ShowResults = (props) => {
   return (
     <div id="shown">
       <div id="results">
-        {props.limitedArray.length} of our guests have mentioned "
-        <b>{props.searchedTerm}</b>"
+        {props.limitedArray.length} of our guests have mentioned "<b>{props.searchedTerm}</b>"
       </div>
       <span id="clearSearch" onClick={props.clearSearch}> Back to all reviews </span>
       <br/>

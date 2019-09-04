@@ -50,13 +50,12 @@ class ReviewsListEntry extends React.Component {
           </div>
         </div>
 
-
         <div>
           {this.props.review.listingsId % 2 !== 0 ? null : <Responses
-          listingsInfo={this.props.listingsInfo}
-          response={this.props.review.response}
-          response_date={this.props.review.response_date}/>}
-
+            listingsInfo={this.props.listingsInfo}
+            response={this.props.review.response}
+            response_date={this.props.review.response_date}
+          />}
         </div>
 
         <div className="divider">
