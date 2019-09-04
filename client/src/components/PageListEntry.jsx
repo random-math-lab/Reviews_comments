@@ -14,7 +14,7 @@ class PageListEntry extends React.Component {
   }
 
   render () {
-    // console.log(this.props.currentPage)
+    // console.log(this.props);
     let pageNum;
     if (this.props.currentPage === this.props.page) {
       pageNum = <div className="activePage"> <span>{this.props.page} </span></div>;

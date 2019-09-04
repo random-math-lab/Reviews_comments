@@ -1,0 +1,266 @@
+<html>
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <link href='//fonts.googleapis.com/css?family=Montserrat:thin,extra-light,light,100,200,300,400,500,600,700,800'
+rel='stylesheet' type='text/css'>
+
+  <style>
+    body {
+      font-family: 'Montserrat';
+    }
+
+    #app {
+      margin: 5%;
+      width: 648px;
+    }
+
+    .header {
+      margin-bottom: 16px;
+    }
+
+    #h2divide {
+      margin-top: 24px;
+      margin-bottom: 24px;
+      border-bottom: solid 1px;
+      border-radius: 50%;
+      border-color: lightgray;
+    }
+
+    #ratingsDivide {
+      margin-top: 24px;
+      margin-bottom: 24px;
+      border-bottom: solid 1px;
+      border-radius: 50%;
+      border-color: lightgray;
+
+    }
+
+    #head {
+      float: left;
+      font-size: 130%;
+      font-weight: bolder;
+      margin-top: 7px;
+    }
+
+    #search {
+      float: right;
+    }
+
+    #form {
+      border-width: 1px;
+      border-style: ridge;
+      border-color: lightgray;
+      border-radius: 6%;
+      font-size: 80%;
+    }
+
+    #results {
+      background: none;
+      border: none;
+      float: left;
+      margin-left: 48px;
+    }
+
+    #clearSearch {
+      float: right;
+      color: #007D8C;
+    }
+    #clearSearch:hover {
+      text-decoration: underline;
+      cursor: pointer;
+    }
+
+
+    .overallStars {
+      float:left;
+      margin-top: 10px;
+      margin-left: 20px;
+    }
+
+    .ratingsSection {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-gap: 10px;
+      grid-auto-rows: minmax(100px, 3);
+    }
+
+    /* .widget-container {
+      padding-left: 2px;
+      padding-right: 2px;
+    } */
+
+    .widget-ratings {
+      padding-bottom: 17px;
+    }
+
+    .rating {
+      padding-bottom: 11px;
+    }
+
+    .ratings1 {
+      grid-column: 1;
+      grid-row: 1;
+    }
+
+    .ratings3 {
+      /* padding-top: 9px; */
+      grid-column:2;
+      grid-row: 1;
+      width: 151px;
+      padding-left: 42px
+
+
+    }
+
+    .ratings2 {
+      grid-column: 3;
+      grid-row: 1;
+      padding-left: 36px;
+    }
+
+    .ratings4 {
+      grid-column: 4;
+      grid-row: 1;
+      padding-left: 48px;
+    }
+
+    .reviewsList {
+      margin-top: 16px;
+    }
+
+    /* .reviewListEntry {
+    } */
+
+    #travelerPic {
+      border-radius: 100%;
+      width: 48px;
+      height: 48px;
+    }
+
+    .travelerPic {
+      width:48px;
+      height: 48px;
+      margin-right: 16px;
+      float: left;
+    }
+
+    .travelerInfo {
+      margin-left: 16px;
+    }
+
+    #travelerName {
+      font-weight: bold;
+    }
+
+    .reviewBody {
+      margin-top: 16px;
+    }
+
+    .responses {
+      margin-top: 16px;
+      margin-left: 16px;
+      display: flex;
+    }
+
+    .hostPic {
+      margin-right: 16px;
+    }
+
+    #hostPic {
+      border-radius: 100%;
+      width: 40px;
+      height: 40px;
+    }
+
+    .hostInfo {
+      margin-bottom: 2px;
+      font-weight: bold;
+    }
+
+    .responseDate {
+      margin-top: 12px;
+      color: darkgray;
+    }
+
+
+    #readMore {
+      color: #007D89;
+    }
+
+    #readMore:hover {
+      text-decoration: underline;
+      cursor: pointer;
+    }
+
+    .divider {
+      margin-top: 24px;
+      margin-bottom: 24px;
+      border-bottom: solid 1px;
+      border-radius: 50%;
+      border-color: lightgray;
+    }
+
+    #pageList {
+      display: flex;
+    }
+
+    .activePage {
+      color: #fff;
+
+      /* border-radius: 16px; */
+      padding-left: 12px;
+      padding-right: 12px;
+      padding-top: 4px;
+      padding-bottom: 4px;
+      /* font-size: 120%;  */
+      border-radius: 50%;
+      behavior: url(PIE.htc);
+      /* remove if you don't care about IE8 */
+      /* width: 16px;
+      height: 16px; */
+      background: #007D8C;
+      /* border: 2px solid darkgray; */
+      text-align: center;
+    }
+
+    .pages {
+      color: #007D8C;
+
+      /* border-radius: 16px; */
+      padding-left: 12px;
+      padding-right: 12px;
+      padding-top: 4px;
+      padding-bottom: 4px;
+      /* font-size: 120%;  */
+      border-radius: 50%;
+      behavior: url(PIE.htc);
+      /* remove if you don't care about IE8 */
+      /* width: 16px;
+      height: 16px; */
+      background: #fff;
+      /* border: 2px solid darkgray; */
+      text-align: center;
+    }
+
+    .pages:hover {
+      cursor: pointer;
+      text-decoration: underline;
+    }
+
+
+  </style>
+
+  <meta charset="utf-8">
+  <title> OMEGA REVIEWS </title>
+</head>
+
+<body>
+  <div id="app">
+  </div>
+</body>
+
+<script type="text/javascript" src="./bundle.js"> </script>
+</html>
