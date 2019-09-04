@@ -41,7 +41,7 @@ class App extends React.Component {
 
   fetchListings() {
     const that = this;
-    fetch(`/api/listings?listingsId=${that.state.listingsId}`)
+    fetch(`http://localhost:3001/api/listings?listingsId=${that.state.listingsId}`)
       .then(function(response) {
         return response.json();
       })
@@ -54,7 +54,7 @@ class App extends React.Component {
 
   fetchReviewsResponses() {
     const that = this;
-    fetch(`/api/reviewsResponses?listingsId=${that.state.listingsId}`)
+    fetch(`http://localhost:3001/api/reviewsResponses?listingsId=${that.state.listingsId}`)
       .then(function(response) {
         return response.json();
       })
