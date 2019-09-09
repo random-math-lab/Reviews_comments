@@ -16,16 +16,18 @@
   "scripts": {
     "db": "sudo service mysql start",
     "react-dev": "webpack -d --watch",
-    "start": "nodemon server/server.js",
+    "start": "node server/server.js",
     "seed": "node server/seeder.js",
     "test": "jest"
   },
   "dependencies": {
     "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
     "express": "^4.17.1",
     "faker": "^4.1.0",
     "jquery": "^3.4.1",
     "lodash": "^4.17.15",
+    "morgan": "^1.9.1",
     "mysql": "^2.17.1",
     "node-fetch": "^2.6.0",
     "nodemon": "^1.19.1",

@@ -41,25 +41,23 @@ class App extends React.Component {
 
   fetchListings() {
     const that = this;
-    fetch(`http://localhost:3001/api/listings?listingsId=${that.state.listingsId}`)
+    fetch(`http://ec2-54-153-36-39.us-west-1.compute.amazonaws.com:3306/api/listings?listingsId=${that.state.listingsId}`)
       .then(function(response) {
         return response.json();
       })
       .then(function(data) {
-        // console.log(data);
+        console.log(data)
         that.setState({ listingsInfo: data });
-        // console.log(that.state.listingsInfo)
       });
   }
 
   fetchReviewsResponses() {
     const that = this;
-    fetch(`http://localhost:3001/api/reviewsResponses?listingsId=${that.state.listingsId}`)
+    fetch(`http://ec2-54-153-36-39.us-west-1.compute.amazonaws.com:3306/api/reviewsResponses?listingsId=${that.state.listingsId}`)
       .then(function(response) {
         return response.json();
       })
       .then(function(data) {
-        // console.log(data);
         function sortFunction(a, b) {
           const dateA = new Date(a.date).getTime();
           const dateB = new Date(b.date).getTime();
@@ -67,13 +65,9 @@ class App extends React.Component {
         }
         const chronilogicalReviews = data.sort(sortFunction);
         that.setState({ reviewsInfo: chronilogicalReviews });
-        // console.log(that.state.reviewsInfo);
         const carouseledReviews = _.chunk(chronilogicalReviews, 7);
         that.setState({ carouseledReviewsInfo: carouseledReviews });
-        // console.log(that.state.carouseledReviewsInfo);
         that.setState({ reviewsResponses: carouseledReviews[0] });
-        // console.log(that.state.reviewsResponses);
-        // console.log(that.state.reviewsResponses)
       });
   }
 
@@ -96,7 +90,6 @@ class App extends React.Component {
   }
 
   handleSearch(term) {
-    // console.log(term);
     this.setState({
       value: term
     });
@@ -132,7 +125,7 @@ class App extends React.Component {
 
   handleScroll() {
     window.scroll({
-      top: 200,
+      top: 600,
       behavior: 'smooth'
     });
   }

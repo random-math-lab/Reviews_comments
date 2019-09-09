@@ -1,17 +1,21 @@
 const express = require('express');
 const app = express();
-const PORT = 3001;
+const PORT = 3306;
 const bodyParser = require('body-parser');
 const db = require('./db.js');
+// const morgan = require('morgan');
+const path = require('path');
+var cors = require('cors');
 
 
-app.use(express.static(__dirname + '/../client/dist'));
+app.use(express.static(path.join(__dirname, '../client/dist')));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());
+// app.use(morgan('tiny'))
+app.use(cors());
 
 app.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "http://localhost:3000"); // update to match the domain you will make the request from
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  res.header("Access-Control-Allow-Origin", "*"); // update to match the domain you will make the request from
   next();
 });
 
