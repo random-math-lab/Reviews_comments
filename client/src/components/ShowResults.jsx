@@ -1,7 +1,6 @@
 import React from 'react';
 
 const ShowResults = (props) => {
-  // console.log(props);
   return (
     <div id="shown">
       <div id="results">

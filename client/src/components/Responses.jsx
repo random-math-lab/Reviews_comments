@@ -6,7 +6,6 @@ const Responses = (props) => {
   let hostName = '';
   let responseDate = '';
   if (props.listingsInfo.length) {
-    // console.log(props);
     hostPic = props.listingsInfo[0].img;
     response = props.response;
     hostName = props.listingsInfo[0].host_firstName;

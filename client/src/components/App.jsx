@@ -64,10 +64,14 @@ class App extends React.Component {
           return dateA < dateB ? 1 : -1;
         }
         const chronilogicalReviews = data.sort(sortFunction);
-        that.setState({ reviewsInfo: chronilogicalReviews });
+        // that.setState({ reviewsInfo: chronilogicalReviews });
         const carouseledReviews = _.chunk(chronilogicalReviews, 7);
-        that.setState({ carouseledReviewsInfo: carouseledReviews });
-        that.setState({ reviewsResponses: carouseledReviews[0] });
+        // that.setState({ carouseledReviewsInfo: carouseledReviews });
+        that.setState({
+          reviewsResponses: carouseledReviews[0],
+          carouseledReviewsInfo: carouseledReviews,
+          reviewsInfo: chronilogicalReviews
+        });
       });
   }
 

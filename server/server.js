@@ -5,9 +5,12 @@ const bodyParser = require('body-parser');
 const db = require('./db.js');
 // const morgan = require('morgan');
 const path = require('path');
-var cors = require('cors');
+const cors = require('cors');
 
+// compression
+const compression = require('compression');
 
+app.use(compression())
 app.use(express.static(path.join(__dirname, '../client/dist')));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());

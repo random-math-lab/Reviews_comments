@@ -6,12 +6,14 @@ class RatingsList extends React.Component {
     super(props);
 
     this.state = {
+      // ratings: [],
       accuracy: 0,
       communication: 0,
       cleanliness: 0,
       location: 0,
       checkIn: 0,
       value: 0,
+      isLoading: true,
     };
 
     this.computeAccuracy = this.computeAccuracy.bind(this);
@@ -24,15 +26,20 @@ class RatingsList extends React.Component {
 
   }
 
-  componentDidMount() {
-    this.computeAccuracy();
-    this.computeCommunication();
-    this.computeCleanliness();
-    this.computeLocation();
-    this.computeCheckIn();
-    this.computeValue();
-    this.computeOverall();
+  // componentDidMount() {
+  //   console.log(this.props.reviewsResponses);
+  // }
 
+  componentDidUpdate(prevProps) {
+    if (prevProps.reviewsResponses !== this.props.reviewsResponses) {
+      this.computeAccuracy();
+      this.computeCommunication();
+      this.computeCleanliness();
+      this.computeLocation();
+      this.computeCheckIn();
+      this.computeValue();
+      this.computeOverall();
+    }
   }
 
   computeOverall() {
@@ -54,22 +61,16 @@ class RatingsList extends React.Component {
   computeAccuracy() {
     const ratings = this.props.reviewsResponses;
     let accArr = [];
-    // console.log(ratings);
     ratings.forEach((accRating) => {
       if (accRating.ratings_accuracy) {
         accArr.push(accRating.ratings_accuracy);
       }
     });
     let accAvg = 0;
-    // console.log(accArr);
     for (let i = 0; i < accArr.length; i++) {
-      // console.log(accArr[i])
       accAvg += accArr[i];
-      // console.log(accAvg);
     }
     accAvg = accAvg / accArr.length;
-    // console.log(accAvg)
-    // console.log(accAvg)
     this.setState({
       accuracy: accAvg
     });
@@ -172,80 +173,88 @@ class RatingsList extends React.Component {
   }
 
   render() {
-    // console.log(this.props)
+    //this conditional logic is being skipped, pretty sure
+    //
+    let page;
+    if (this.state.value === 0) {
+      page = <div>serving up guest ratings...</div>
+    } else {
+      page = <div className="ratingsSection">
+      <div className="ratings1">
+        <div className="rating"> Accuracy
+        </div>
+        <div className="rating"> Communication
+        </div>
+        <div className="rating">  Cleanliness
+        </div>
+      </div>
+      <div className="ratings3">
+        <Ratings rating={this.state.accuracy} widgetRatedColors="007D8C" widgetDimensions="19px" widgetSpacings="1px">
+          <Ratings.Widget />
+          <Ratings.Widget />
+          <Ratings.Widget />
+          <Ratings.Widget />
+          <Ratings.Widget />
+        </Ratings>
+        <Ratings rating={this.state.communication} widgetRatedColors="007D8C" widgetDimensions="19px" widgetSpacings="1px">
+          <Ratings.Widget />
+          <Ratings.Widget />
+          <Ratings.Widget />
+          <Ratings.Widget />
+          <Ratings.Widget />
+        </Ratings>
+        <Ratings rating={this.state.cleanliness} widgetRatedColors="007D8C" widgetDimensions="19px" widgetSpacings="1px">
+          <Ratings.Widget />
+          <Ratings.Widget />
+          <Ratings.Widget />
+          <Ratings.Widget />
+          <Ratings.Widget />
+        </Ratings>
+      </div>
+
+      <div className="ratings2">
+        <div className="rating"> Location
+        </div>
+        <div className="rating"> Check-in
+        </div>
+        <div className="rating"> Value
+        </div>
+      </div>
+
+      <div className="ratings4">
+        <div>
+          <Ratings rating={this.state.location} widgetRatedColors="007D8C" widgetDimensions="19px" widgetSpacings="1px">
+            <Ratings.Widget />
+            <Ratings.Widget />
+            <Ratings.Widget />
+            <Ratings.Widget />
+            <Ratings.Widget />
+          </Ratings>
+        </div>
+        <div>
+          <Ratings rating={this.state.checkIn} widgetRatedColors="007D8C" widgetDimensions="19px" widgetSpacings="1px">
+            <Ratings.Widget />
+            <Ratings.Widget />
+            <Ratings.Widget />
+            <Ratings.Widget />
+            <Ratings.Widget />
+          </Ratings>
+        </div>
+        <div>
+          <Ratings rating={this.state.value} widgetRatedColors="007D8C" widgetDimensions="19px" widgetSpacings="1px">
+            <Ratings.Widget />
+            <Ratings.Widget />
+            <Ratings.Widget />
+            <Ratings.Widget />
+            <Ratings.Widget />
+          </Ratings>
+        </div>
+      </div>
+    </div>
+    }
     return (
-      <div className="ratingsSection">
-        <div className="ratings1">
-          <div className="rating"> Accuracy
-          </div>
-          <div className="rating"> Communication
-          </div>
-          <div className="rating">  Cleanliness
-          </div>
-        </div>
-
-        <div className="ratings3">
-          <Ratings rating={this.state.accuracy} widgetRatedColors="007D8C" widgetDimensions="19px" widgetSpacings="1px">
-            <Ratings.Widget />
-            <Ratings.Widget />
-            <Ratings.Widget />
-            <Ratings.Widget />
-            <Ratings.Widget />
-          </Ratings>
-          <Ratings rating={this.state.communication} widgetRatedColors="007D8C" widgetDimensions="19px" widgetSpacings="1px">
-            <Ratings.Widget />
-            <Ratings.Widget />
-            <Ratings.Widget />
-            <Ratings.Widget />
-            <Ratings.Widget />
-          </Ratings>
-          <Ratings rating={this.state.cleanliness} widgetRatedColors="007D8C" widgetDimensions="19px" widgetSpacings="1px">
-            <Ratings.Widget />
-            <Ratings.Widget />
-            <Ratings.Widget />
-            <Ratings.Widget />
-            <Ratings.Widget />
-          </Ratings>
-        </div>
-
-        <div className="ratings2">
-          <div className="rating"> Location
-          </div>
-          <div className="rating"> Check-in
-          </div>
-          <div className="rating"> Value
-          </div>
-        </div>
-
-        <div className="ratings4">
-          <div>
-            <Ratings rating={this.state.location} widgetRatedColors="007D8C" widgetDimensions="19px" widgetSpacings="1px">
-              <Ratings.Widget />
-              <Ratings.Widget />
-              <Ratings.Widget />
-              <Ratings.Widget />
-              <Ratings.Widget />
-            </Ratings>
-          </div>
-          <div>
-            <Ratings rating={this.state.checkIn} widgetRatedColors="007D8C" widgetDimensions="19px" widgetSpacings="1px">
-              <Ratings.Widget />
-              <Ratings.Widget />
-              <Ratings.Widget />
-              <Ratings.Widget />
-              <Ratings.Widget />
-            </Ratings>
-          </div>
-          <div>
-            <Ratings rating={this.state.value} widgetRatedColors="007D8C" widgetDimensions="19px" widgetSpacings="1px">
-              <Ratings.Widget />
-              <Ratings.Widget />
-              <Ratings.Widget />
-              <Ratings.Widget />
-              <Ratings.Widget />
-            </Ratings>
-          </div>
-        </div>
+      <div>
+        {page}
       </div>
     );
   }
